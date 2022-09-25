@@ -8,6 +8,7 @@ import "./styles/main.css";
 import CreateAdModal from "./components/CreateAdModal";
 import CreateAdBanner from "./components/CreateAdBanner";
 import axios from "axios";
+import Carousel from "./components/Carousel";
 
 interface Game {
   id: string;
@@ -28,9 +29,9 @@ const App = () => {
   }, []);
 
   return (
-    <div className="max-w-[1344px] mx-auto flex flex-col items-center my-20">
+    <div className="max-w-[1488px] mx-auto flex flex-col items-center my-20">
       <img src={logoImg} />
-      <h1 className="text-6xl text-white font-black mt-20">
+      <h1 className="text-6xl text-white font-black mt-20 mb-16">
         Seu{" "}
         <span className="bg-nlw-gradient bg-clip-text text-transparent">
           duo
@@ -38,7 +39,7 @@ const App = () => {
         está aqui.
       </h1>
 
-      <div className="grid grid-cols-6 gap-6 mt-16">
+      <Carousel>
         {games.map((game) => (
           <GameBanner
             key={game.id}
@@ -47,7 +48,7 @@ const App = () => {
             adsCount={game._count.ads}
           />
         ))}
-      </div>
+      </Carousel>
 
       <CreateAdModal>
         <CreateAdBanner />
