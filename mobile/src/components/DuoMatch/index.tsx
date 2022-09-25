@@ -4,14 +4,13 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Alert,
   ActivityIndicator,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { styles } from "./styles";
 import { THEME } from "../../theme";
-import { CheckCircle } from "phosphor-react-native";
+import { Check, CheckCircle } from "phosphor-react-native";
 import { Heading } from "../Heading";
 
 import * as Clipboard from "expo-clipboard";
@@ -24,16 +23,43 @@ interface Props extends ModalProps {
 
 export function DuoMatch({ discord, onClose, ...rest }: Props) {
   const [isCopping, setIsCopping] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const handleCopyDiscordToClipboard = async () => {
     setIsCopping(true);
     await Clipboard.setStringAsync(discord);
 
-    Alert.alert(
-      "Discord Copiado!",
-      "Usuário copiado para sua área de transferência."
-    );
     setIsCopping(false);
+    setIsCopied(true);
+
+    setTimeout(() => setIsCopied(false), 2000);
+  };
+
+  const getDiscordText = () => {
+    if (isCopping) {
+      return <ActivityIndicator color={THEME.COLORS.PRIMARY} />;
+    } else if (isCopied) {
+      return (
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Check
+            size={20}
+            color={THEME.COLORS.SUCCESS}
+            weight="bold"
+            style={{ marginRight: 8 }}
+          />
+          <Text style={styles.discord}>Copiado com êxito</Text>
+        </View>
+      );
+    }
+
+    return discord;
   };
 
   return (
@@ -60,15 +86,9 @@ export function DuoMatch({ discord, onClose, ...rest }: Props) {
           <TouchableOpacity
             style={styles.discordButton}
             onPress={handleCopyDiscordToClipboard}
-            disabled={isCopping}
+            disabled={isCopping || isCopied}
           >
-            <Text style={styles.discord}>
-              {isCopping ? (
-                <ActivityIndicator color={THEME.COLORS.PRIMARY} />
-              ) : (
-                discord
-              )}
-            </Text>
+            <Text style={styles.discord}>{getDiscordText()}</Text>
           </TouchableOpacity>
         </View>
       </View>
