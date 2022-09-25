@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    background: none;
+  }
+}
+
+:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0px 30px rgb(24 24 27) inset;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+  caret-color: rgb(255 255 255);
+}
