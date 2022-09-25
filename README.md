@@ -5,8 +5,8 @@ Mais detalhes nas próximas seções.
 
 ## Navegue diretamente:
 
-- [ReactJS](#⚛️-reactjs)
-- [React Native](#⚛️-react-native)
+- [ReactJS](#%EF%B8%8F-reactjs)
+- [React Native](#%EF%B8%8F-react-native)
 - [NodeJS](#nodejs)
 
 # ⚛️ ReactJS
@@ -43,8 +43,8 @@ Mais detalhes nas próximas seções.
 - Algumas partes do site já estão responsivos(ainda faltam alguns ajustes).
 
 ## ✨ Demonstração
+https://user-images.githubusercontent.com/59130585/192158094-c24a8544-b4af-48b4-85fc-919865ec5ad0.mp4
 
--- GIF
 
 # ⚛️ React Native
 
